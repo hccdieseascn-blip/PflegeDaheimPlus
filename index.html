@@ -123,16 +123,16 @@
                 <div class="welcome">
 
                     <div>
-                        <span class="label">GUTEN MORGEN</span>
+                        <span class="label" data-i18n="goodMorning">GUTEN MORGEN</span>
 
                         <h2>
-                            Willkommen zurück,
-                            <span id="welcomeName">Anna</span> 👋
+                        <span data-i18n="welcome">Willkommen zurück</span>,
+                        <span id="welcomeName">Anna</span> 👋
                         </h2>
 
-                        <p>
-                            Hier sehen Sie Ihren aktuellen Gesundheitsstatus
-                            und die wichtigsten Aufgaben für heute.
+                        <p data-i18n="welcomeDescription">
+                         Hier sehen Sie Ihren aktuellen Gesundheitsstatus
+                         und die wichtigsten Aufgaben für heute.
                         </p>
                     </div>
 
@@ -171,8 +171,8 @@
 
 
                 <div class="section-title">
-                    <h3>Gesundheitsstatus heute</h3>
-                    <span>Aktualisiert vor wenigen Minuten</span>
+                <h3 data-i18n="healthStatusToday">Gesundheitsstatus heute</h3>
+                <span data-i18n="updatedRecently">Aktualisiert vor wenigen Minuten</span>
                 </div>
 
 
@@ -545,11 +545,13 @@
                     </div>
 
                     <button class="primary-btn" onclick="openVitalModal()">
-                        + Neue Messung
+                    <span data-i18n="newMeasurement">+ Neue Messung</span>
                     </button>
 
                 </div>
-
+                    <input id="messageInput"
+                    data-i18n-placeholder="messagePlaceholder"
+                    placeholder="Nachricht schreiben...">
 
                 <div class="stats">
 
