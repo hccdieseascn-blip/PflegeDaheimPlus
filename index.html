@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PflegeDaheim+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">+</div>
+            <div>
+                <h2>PflegeDaheim+</h2>
+                <span>Digitale häusliche Pflege</span>
+            </div>
+        </div>
+
+        <div class="profile-mini">
+            <div class="avatar">AM</div>
+            <div>
+                <strong id="sidebarName">Anna Müller</strong>
+                <small>Pflegegrad 2</small>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav active" onclick="showPage('dashboard', this)">
+                🏠 <span data-i18n="dashboard">Dashboard</span>
+            </button>
+            
+            <button class="nav" onclick="showPage('gesundheit', this)">
+            ❤️ <span data-i18n="healthMonitor">Gesundheitsmonitor</span>
+            </button>
+
+            <button class="nav" onclick="showPage('medikamente', this)">
+             💊 <span data-i18n="medications">Medikamente</span>
+            </button>
+
+            <button class="nav" onclick="showPage('sturz', this)">
+            ⚠️ <span data-i18n="fallPrevention">Sturzprävention</span>
+            </button>
+
+            <button class="nav" onclick="showPage('pflegeplan', this)">
+             📅 <span data-i18n="carePlan">Pflegeplan</span>
+            </button>
+
+            <button class="nav" onclick="showPage('telemedizin', this)">
+             📹 <span data-i18n="telemedicine">Telemedizin</span>
+            </button>
+
+            <button class="nav" onclick="showPage('berichte', this)">
+             📝 <span data-i18n="careReports">Pflegeberichte</span>
+            </button>
+
+            <button class="nav" onclick="showPage('nachrichten', this)">
+             💬 <span data-i18n="messages">Nachrichten</span>
+            </button>
+
+            <button class="nav" onclick="showPage('einstellungen', this)">
+             ⚙️ <span data-i18n="settings">Einstellungen</span>
+            </button>
+
+            <button class="emergency" onclick="openSOS()">
+            🆘 <span data-i18n="emergency">NOTFALL / SOS</span>
+            </button>
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <span id="currentDate"></span>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+
+            <div class="top-actions">
+
+                <div class="language-switch">
+                <button id="langDE" class="lang-btn active" onclick="setLanguage('de')">
+                  DE
+                </button>
+                <button id="langID" class="lang-btn" onclick="setLanguage('id')">
+                  ID
+                </button>
+            </div>
+
+                <button class="notification" onclick="showNotifications()">
+                    🔔
+                    <span id="notificationCount">2</span>
+                </button>
+
+                <div class="top-profile">
+                    <div class="avatar small">AM</div>
+                    <div>
+                        <strong id="topName">Anna Müller</strong>
+                        <small>Patientin</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <section id="dashboard" class="page active-page">
+
+                <div class="welcome">
+
+                    <div>
+                        <span class="label">GUTEN MORGEN</span>
+
+                        <h2>
+                            Willkommen zurück,
+                            <span id="welcomeName">Anna</span> 👋
+                        </h2>
+
+                        <p>
+                            Hier sehen Sie Ihren aktuellen Gesundheitsstatus
+                            und die wichtigsten Aufgaben für heute.
+                        </p>
+                    </div>
+
+                    <button class="primary-btn" onclick="showPage('gesundheit')">
+                    <span data-i18n="enterVitals">
+                    + Vitalzeichen eingeben
+                    </span>
+                    </button>
+
+                </div>
+
+
+                <!-- WARNING -->
+
+                <div id="bpWarning" class="warning hidden">
+
+                    <div class="warning-icon">⚠️</div>
+
+                    <div>
+                        <strong data-i18n="highBloodPressure">
+                        Erhöhter Blutdruck erkannt
+                        </strong>
+
+                        <p>
+                            Der aktuelle Blutdruck liegt über dem
+                            hinterlegten Beobachtungsbereich.
+                        </p>
+                    </div>
+
+                    <button onclick="informNurse()">
+                    <span data-i18n="informCareTeam">
+                            Pflegeteam informieren
+                    </span>
+                    </button>
+                </div>
+
+
+                <div class="section-title">
+                    <h3>Gesundheitsstatus heute</h3>
+                    <span>Aktualisiert vor wenigen Minuten</span>
+                </div>
+
+
+                <div class="stats">
+
+                    <div class="stat-card">
+                        <div class="stat-icon red">♥</div>
+
+                        <div>
+                            <span>Blutdruck</span>
+                            <strong id="dashboardBP">138/82</strong>
+                            <small>mmHg</small>
+                        </div>
+
+                        <div class="status good" id="bpStatus">
+                            Normal
+                        </div>
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">♡</div>
+
+                        <div>
+                            <span>Puls</span>
+                            <strong id="dashboardPulse">74</strong>
+                            <small>bpm</small>
+                        </div>
+
+                        <div class="status good">
+                            Stabil
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon cyan">◉</div>
+
+                        <div>
+                            <span>SpO₂</span>
+                            <strong id="dashboardSpO2">97</strong>
+                            <small>%</small>
+                        </div>
+
+                        <div class="status good">
+                            Normal
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">💧</div>
+
+                        <div>
+                            <span>Trinken</span>
+                            <strong>1,3</strong>
+                            <small>/ 1,5 L</small>
+                        </div>
+
+                        <div class="progress-mini">
+                            <div style="width:87%"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MIDDLE -->
+
+                <div class="dashboard-grid">
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <div>
+                                <span class="label">GESUNDHEIT</span>
+                                <h3>Blutdruckverlauf</h3>
+                            </div>
+
+                            <select>
+                                <option>7 Tage</option>
+                                <option>30 Tage</option>
+                            </select>
+                        </div>
+
+                        <div class="chart">
+
+                            <div class="chart-line">
+                                <span>160</span>
+                                <span>140</span>
+                                <span>120</span>
+                                <span>100</span>
+                            </div>
+
+                            <div class="bars">
+
+                                <div class="bar" style="height:45%">
+                                    <small>29</small>
+                                    <label>Mo</label>
+                                </div>
+
+                                <div class="bar" style="height:58%">
+                                    <small>38</small>
+                                    <label>Di</label>
+                                </div>
+
+                                <div class="bar" style="height:52%">
+                                    <small>35</small>
+                                    <label>Mi</label>
+                                </div>
+
+                                <div class="bar" style="height:65%">
+                                    <small>43</small>
+                                    <label>Do</label>
+                                </div>
+
+                                <div class="bar" style="height:55%">
+                                    <small>37</small>
+                                    <label>Fr</label>
+                                </div>
+
+                                <div class="bar" style="height:72%">
+                                    <small>48</small>
+                                    <label>Sa</label>
+                                </div>
+
+                                <div class="bar current" style="height:68%">
+                                    <small>45</small>
+                                    <label>Heute</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Tagesplan -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <span class="label">HEUTE</span>
+                                <h3>Tagesplan</h3>
+                            </div>
+
+                            <button class="text-btn"
+                                onclick="showPage('pflegeplan')">
+                                Alle anzeigen
+                            </button>
+
+                        </div>
+
+
+                        <div class="timeline">
+
+                            <div class="timeline-item done">
+                                <div class="time">08:00</div>
+
+                                <div>
+                                    <strong>Medikamente</strong>
+                                    <p>Ramipril + Metformin</p>
+                                </div>
+
+                                <span>✓</span>
+                            </div>
+
+
+                            <div class="timeline-item">
+                                <div class="time">09:30</div>
+
+                                <div>
+                                    <strong>Hausbesuch</strong>
+                                    <p>Vitalzeichen kontrollieren</p>
+                                </div>
+
+                                <span>•</span>
+                            </div>
+
+
+                            <div class="timeline-item">
+                                <div class="time">14:00</div>
+
+                                <div>
+                                    <strong>Bewegung</strong>
+                                    <p>Spaziergang mit Angehörigen</p>
+                                </div>
+
+                                <span>•</span>
+                            </div>
+
+
+                            <div class="timeline-item">
+                                <div class="time">18:00</div>
+
+                                <div>
+                                    <strong>Trinkmenge</strong>
+                                    <p>Flüssigkeitsbilanz prüfen</p>
+                                </div>
+
+                                <span>•</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTTOM -->
+
+                <div class="section-title">
+                    <h3>Schnellzugriff</h3>
+                </div>
+
+
+                <div class="quick-actions">
+
+                    <button onclick="showPage('gesundheit')">
+                        <span>❤️</span>
+                        <strong>Vitalzeichen</strong>
+                        <small>Blutdruck & Werte</small>
+                    </button>
+
+                    <button onclick="showPage('medikamente')">
+                        <span>💊</span>
+                        <strong>Medikamente</strong>
+                        <small>Heute 2/3 genommen</small>
+                    </button>
+
+                    <button onclick="showPage('sturz')">
+                        <span>🚶</span>
+                        <strong>Sturzprävention</strong>
+                        <small>Risiko überprüfen</small>
+                    </button>
+
+                    <button onclick="showPage('telemedizin')">
+                        <span>📹</span>
+                        <strong>Telemedizin</strong>
+                        <small>Nächster Termin 07.10.</small>
+                    </button>
+
+                </div>
+
+
+                <div class="bottom-grid">
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <h3>Letzte Pflegeaktivitäten</h3>
+                            <button class="text-btn"
+                                onclick="showPage('berichte')">
+                                Alle Berichte
+                            </button>
+                        </div>
+
+                        <div class="activity">
+
+                            <div class="activity-icon">✓</div>
+
+                            <div>
+                                <strong>Vitalzeichen kontrolliert</strong>
+                                <p>Pflegefachperson Weber · 08:25</p>
+                            </div>
+
+                        </div>
+
+                        <div class="activity">
+
+                            <div class="activity-icon">💊</div>
+
+                            <div>
+                                <strong>Medikamenteneinnahme bestätigt</strong>
+                                <p>Anna Müller · 08:05</p>
+                            </div>
+
+                        </div>
+
+                        <div class="activity">
+
+                            <div class="activity-icon">💧</div>
+
+                            <div>
+                                <strong>Trinkmenge aktualisiert</strong>
+                                <p>Anna Müller · 07:45</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card health-goals">
+
+                        <div class="card-header">
+                            <h3>Tagesziele</h3>
+                        </div>
+
+                        <div class="goal">
+
+                            <div>
+                                <strong>Medikamente</strong>
+                                <span>2 von 3</span>
+                            </div>
+
+                            <div class="progress">
+                                <div style="width:67%"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="goal">
+
+                            <div>
+                                <strong>Flüssigkeit</strong>
+                                <span>1,3 / 1,5 L</span>
+                            </div>
+
+                            <div class="progress">
+                                <div style="width:87%"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="goal">
+
+                            <div>
+                                <strong>Bewegung</strong>
+                                <span>32 / 45 min</span>
+                            </div>
+
+                            <div class="progress">
+                                <div style="width:71%"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= GESUNDHEIT ================= -->
+
+            <section id="gesundheit" class="page">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="label">MONITORING</span>
+                        <h2>Gesundheitsmonitor</h2>
+                        <p>
+                            Vitalzeichen erfassen und Veränderungen frühzeitig erkennen.
+                        </p>
+                    </div>
+
+                    <button class="primary-btn" onclick="openVitalModal()">
+                        + Neue Messung
+                    </button>
+
+                </div>
+
+
+                <div class="stats">
+
+                    <div class="stat-card">
+                        <div class="stat-icon red">♥</div>
+                        <div>
+                            <span>Blutdruck</span>
+                            <strong id="monitorBP">138/82</strong>
+                            <small>mmHg</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">♡</div>
+                        <div>
+                            <span>Puls</span>
+                            <strong id="monitorPulse">74</strong>
+                            <small>bpm</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon cyan">◉</div>
+                        <div>
+                            <span>SpO₂</span>
+                            <strong id="monitorSpO2">97</strong>
+                            <small>%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">⚖</div>
+                        <div>
+                            <span>Gewicht</span>
+                            <strong>67,2</strong>
+                            <small>kg</small>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card large-card">
+
+                    <div class="card-header">
+                        <h3>Messverlauf</h3>
+
+                        <button class="secondary-btn">
+                            Exportieren
+                        </button>
+                    </div>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Datum</th>
+                                <th>Zeit</th>
+                                <th>Blutdruck</th>
+                                <th>Puls</th>
+                                <th>SpO₂</th>
+                                <th>Bewertung</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="vitalTable">
+
+                            <tr>
+                                <td>05.10.2026</td>
+                                <td>08:00</td>
+                                <td><strong>138/82</strong></td>
+                                <td>74</td>
+                                <td>97%</td>
+                                <td><span class="pill green">Stabil</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>04.10.2026</td>
+                                <td>08:10</td>
+                                <td>142/86</td>
+                                <td>76</td>
+                                <td>97%</td>
+                                <td><span class="pill green">Stabil</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>03.10.2026</td>
+                                <td>08:05</td>
+                                <td>136/80</td>
+                                <td>72</td>
+                                <td>98%</td>
+                                <td><span class="pill green">Stabil</span></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= MEDIKAMENTE ================= -->
+
+            <section id="medikamente" class="page">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="label">THERAPIE</span>
+                        <h2>Medikationsplan</h2>
+                        <p>Medikamente und Einnahmen im Überblick.</p>
+                    </div>
+
+                    <button class="primary-btn"
+                        onclick="openMedicationModal()">
+                        + Medikament hinzufügen
+                    </button>
+
+                </div>
+
+
+                <div class="medication-grid" id="medicationList">
+
+                    <div class="med-card">
+
+                        <div class="med-top">
+                            <div class="med-icon">💊</div>
+                            <span class="pill green">Eingenommen</span>
+                        </div>
+
+                        <h3>Ramipril</h3>
+                        <p>5 mg · 1 Tablette</p>
+
+                        <div class="med-time">
+                            🕐 08:00 Uhr
+                        </div>
+
+                        <button class="secondary-btn"
+                            onclick="toast('Einnahme bereits bestätigt')">
+                            ✓ Einnahme bestätigt
+                        </button>
+
+                    </div>
+
+
+                    <div class="med-card">
+
+                        <div class="med-top">
+                            <div class="med-icon">💊</div>
+                            <span class="pill green">Eingenommen</span>
+                        </div>
+
+                        <h3>Metformin</h3>
+                        <p>500 mg · 1 Tablette</p>
+
+                        <div class="med-time">
+                            🕐 08:00 Uhr
+                        </div>
+
+                        <button class="secondary-btn"
+                            onclick="toast('Einnahme bereits bestätigt')">
+                            ✓ Einnahme bestätigt
+                        </button>
+
+                    </div>
+
+
+                    <div class="med-card pending">
+
+                        <div class="med-top">
+                            <div class="med-icon">💊</div>
+                            <span class="pill orange">Offen</span>
+                        </div>
+
+                        <h3>Bisoprolol</h3>
+                        <p>2,5 mg · 1 Tablette</p>
+
+                        <div class="med-time">
+                            🕐 20:00 Uhr
+                        </div>
+
+                        <button class="primary-btn"
+                            onclick="toast('Einnahme für 20:00 Uhr vorgemerkt')">
+                            Einnahme bestätigen
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= STURZ ================= -->
+
+            <section id="sturz" class="page">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="label">PRÄVENTION</span>
+                        <h2>Sturzprävention</h2>
+                        <p>
+                            Risikofaktoren erkennen und die häusliche Sicherheit verbessern.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-layout">
+
+                    <div class="card">
+
+                        <h3>Sturzrisiko-Check</h3>
+
+                        <label class="check">
+                            <input type="checkbox" onchange="calculateRisk()">
+                            Gleichgewichtsstörungen
+                        </label>
+
+                        <label class="check">
+                            <input type="checkbox" onchange="calculateRisk()">
+                            Unsicheres Gehen
+                        </label>
+
+                        <label class="check">
+                            <input type="checkbox" checked onchange="calculateRisk()">
+                            Sehbeeinträchtigung
+                        </label>
+
+                        <label class="check">
+                            <input type="checkbox" checked onchange="calculateRisk()">
+                            Medikamente mit Schwindelrisiko
+                        </label>
+
+                        <label class="check">
+                            <input type="checkbox" onchange="calculateRisk()">
+                            Sturz in den letzten 12 Monaten
+                        </label>
+
+                        <label class="check">
+                            <input type="checkbox" onchange="calculateRisk()">
+                            Unsicherheit im Badezimmer
+                        </label>
+
+                    </div>
+
+
+                    <div class="risk-result card">
+
+                        <span class="label">ERGEBNIS</span>
+
+                        <div id="riskLevel" class="risk-number">
+                            Mittleres Risiko
+                        </div>
+
+                        <p id="riskText">
+                            Es bestehen mehrere Risikofaktoren.
+                            Präventive Maßnahmen werden empfohlen.
+                        </p>
+
+                        <div class="recommendation">
+                            💡 Gute Beleuchtung, rutschfeste Schuhe,
+                            Haltegriffe und freie Wege nutzen.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <h3>Wohnungssicherheits-Check</h3>
+                        <span class="pill green">4/5 geprüft</span>
+                    </div>
+
+                    <div class="safety-list">
+
+                        <div>
+                            <span>🛏️ Schlafzimmer</span>
+                            <b>✓ Sicher</b>
+                        </div>
+
+                        <div>
+                            <span>🚿 Badezimmer</span>
+                            <b>✓ Sicher</b>
+                        </div>
+
+                        <div>
+                            <span>🍳 Küche</span>
+                            <b>✓ Sicher</b>
+                        </div>
+
+                        <div>
+                            <span>🛋️ Wohnzimmer</span>
+                            <b>✓ Sicher</b>
+                        </div>
+
+                        <div>
+                            <span>🚪 Eingang</span>
+                            <b class="orange-text">Überprüfen</b>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PFLEGEPLAN ================= -->
+
+            <section id="pflegeplan" class="page">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="label">ORGANISATION</span>
+                        <h2>Pflegeplan</h2>
+                        <p>Alle Aufgaben und Termine für heute.</p>
+                    </div>
+
+                    <button class="primary-btn"
+                        onclick="addTask()">
+                        + Aufgabe hinzufügen
+                    </button>
+
+                </div>
+
+
+                <div class="plan-list">
+
+                    <div class="plan-item completed">
+                        <div class="plan-time">08:00</div>
+
+                        <div class="plan-content">
+                            <span class="task-type">MEDIKATION</span>
+                            <h3>Ramipril & Metformin</h3>
+                            <p>Medikamenteneinnahme bestätigen</p>
+                        </div>
+
+                        <button>✓ Erledigt</button>
+                    </div>
+
+
+                    <div class="plan-item">
+                        <div class="plan-time">09:30</div>
+
+                        <div class="plan-content">
+                            <span class="task-type">PFLEGE</span>
+                            <h3>Hausbesuch</h3>
+                            <p>Vitalzeichen und Allgemeinzustand kontrollieren</p>
+                        </div>
+
+                        <button onclick="completeTask(this)">
+                            Als erledigt markieren
+                        </button>
+                    </div>
+
+
+                    <div class="plan-item">
+                        <div class="plan-time">14:00</div>
+
+                        <div class="plan-content">
+                            <span class="task-type">BEWEGUNG</span>
+                            <h3>Spaziergang</h3>
+                            <p>Bewegungsförderung mit Angehörigen</p>
+                        </div>
+
+                        <button onclick="completeTask(this)">
+                            Als erledigt markieren
+                        </button>
+                    </div>
+
+
+                    <div class="plan-item">
+                        <div class="plan-time">18:00</div>
+
+                        <div class="plan-content">
+                            <span class="task-type">MONITORING</span>
+                            <h3>Flüssigkeitsbilanz</h3>
+                            <p>Trinkmenge überprüfen und dokumentieren</p>
+                        </div>
+
+                        <button onclick="completeTask(this)">
+                            Als erledigt markieren
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= TELEMEDIZIN ================= -->
+
+            <section id="telemedizin" class="page">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="label">DIGITAL HEALTH</span>
+                        <h2>Telemedizin</h2>
+                        <p>
+                            Virtuelle Betreuung zwischen Patient,
+                            Pflegefachperson und Angehörigen.
+                        </p>
+                    </div>
+
+                    <button class="primary-btn"
+                        onclick="startVideo()">
+                        📹 Gespräch starten
+                    </button>
+
+                </div>
+
+
+                <div class="tele-grid">
+
+                    <div class="video-card">
+
+                        <div class="video-placeholder">
+                            <div class="video-avatar">PW</div>
+                            <span>Pflegefachperson Weber</span>
+                            <small>Bereit für den Termin</small>
+                        </div>
+
+                        <div class="video-controls">
+                            <button>🎙️</button>
+                            <button>📷</button>
+                            <button class="end-call">☎</button>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <span class="label">NÄCHSTER TERMIN</span>
+
+                        <h2>07. Oktober 2026</h2>
+
+                        <p>
+                            10:00 Uhr · Verlaufskontrolle
+                        </p>
+
+                        <hr>
+
+                        <h3>Vorbereitung</h3>
+
+                        <label class="check">
+                            <input type="checkbox" checked>
+                            Vitalzeichen aktualisiert
+                        </label>
+
+                        <label class="check">
+                            <input type="checkbox" checked>
+                            Medikamentenliste bereit
+                        </label>
+
+                        <label class="check">
+                            <input type="checkbox">
+                            Fragen notiert
+                        </label>
+
+                        <label class="check">
+                            <input type="checkbox">
+                            Beschwerden dokumentiert
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= BERICHTE ================= -->
+
+            <section id="berichte" class="page">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="label">DOKUMENTATION</span>
+                        <h2>Pflegeberichte</h2>
+                        <p>Verlauf und durchgeführte Maßnahmen.</p>
+                    </div>
+
+                    <button class="primary-btn"
+                        onclick="addReport()">
+                        + Bericht erstellen
+                    </button>
+
+                </div>
+
+
+                <div class="card reports">
+
+                    <div class="report">
+
+                        <div class="report-time">
+                            05.10.2026
+                            <small>08:25</small>
+                        </div>
+
+                        <div class="report-dot"></div>
+
+                        <div>
+                            <span class="pill green">BEOBACHTUNG</span>
+
+                            <h3>Vitalzeichen kontrolliert</h3>
+
+                            <p>
+                                Allgemeinzustand stabil.
+                                Trinkmenge wurde besprochen.
+                            </p>
+
+                            <small>
+                                Pflegefachperson Weber
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="report">
+
+                        <div class="report-time">
+                            04.10.2026
+                            <small>14:15</small>
+                        </div>
+
+                        <div class="report-dot"></div>
+
+                        <div>
+                            <span class="pill blue">MASSNAHME</span>
+
+                            <h3>Bewegungsförderung</h3>
+
+                            <p>
+                                20-minütiger Spaziergang mit
+                                Unterstützung durchgeführt.
+                            </p>
+
+                            <small>
+                                Pflegefachperson Weber
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="report">
+
+                        <div class="report-time">
+                            04.10.2026
+                            <small>08:20</small>
+                        </div>
+
+                        <div class="report-dot"></div>
+
+                        <div>
+                            <span class="pill orange">BERATUNG</span>
+
+                            <h3>Sturzprävention</h3>
+
+                            <p>
+                                Auf sichere Schuhe und freie
+                                Laufwege hingewiesen.
+                            </p>
+
+                            <small>
+                                Pflegefachperson Weber
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= NACHRICHTEN ================= -->
+
+            <section id="nachrichten" class="page">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="label">KOMMUNIKATION</span>
+                        <h2>Nachrichten</h2>
+                        <p>Direkte Kommunikation mit dem Pflegeteam.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="chat-card">
+
+                    <div class="chat-header">
+                        <div class="avatar">PW</div>
+
+                        <div>
+                            <strong>Pflegefachperson Weber</strong>
+                            <small>● Online</small>
+                        </div>
+                    </div>
+
+
+                    <div class="messages" id="messages">
+
+                        <div class="message received">
+                            <p>
+                                Guten Morgen Frau Müller.
+                                Bitte messen Sie heute noch einmal
+                                Ihren Blutdruck.
+                            </p>
+
+                            <small>08:30</small>
+                        </div>
+
+
+                        <div class="message sent">
+                            <p>
+                                Guten Morgen. Ich habe gerade
+                                gemessen. Der Wert ist 138/82.
+                            </p>
+
+                            <small>08:34</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="chat-input">
+
+                        <input id="messageInput"
+                            placeholder="Nachricht schreiben...">
+
+                        <button onclick="sendMessage()">
+                            ➤
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= EINSTELLUNGEN ================= -->
+
+            <section id="einstellungen" class="page">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="label">PROFIL</span>
+                        <h2>Einstellungen</h2>
+                        <p>Persönliche Daten und Zugänglichkeit.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="settings-grid">
+
+                    <div class="card">
+
+                        <h3>Persönliche Daten</h3>
+
+                        <div class="form-grid">
+
+                            <label>
+                                Name
+                                <input id="profileName"
+                                    value="Anna Müller">
+                            </label>
+
+                            <label>
+                                Alter
+                                <input value="78">
+                            </label>
+
+                            <label>
+                                Pflegegrad
+                                <select>
+                                    <option>Pflegegrad 1</option>
+                                    <option selected>Pflegegrad 2</option>
+                                    <option>Pflegegrad 3</option>
+                                    <option>Pflegegrad 4</option>
+                                    <option>Pflegegrad 5</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Telefon
+                                <input value="+49 170 1234567">
+                            </label>
+
+                        </div>
+
+                        <button class="primary-btn"
+                            onclick="saveProfile()">
+                            Änderungen speichern
+                        </button>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>Barrierefreiheit</h3>
+
+                        <label class="setting-row">
+                            <span>
+                                <strong>Große Schrift</strong>
+                                <small>Bessere Lesbarkeit</small>
+                            </span>
+
+                            <input type="checkbox"
+                                onchange="toggleLargeText(this)">
+                        </label>
+
+
+                        <label class="setting-row">
+                            <span>
+                                <strong>Benachrichtigungen</strong>
+                                <small>Gesundheitswarnungen</small>
+                            </span>
+
+                            <input type="checkbox" checked>
+                        </label>
+
+
+                        <label class="setting-row">
+                            <span>
+                                <strong>Hoher Kontrast</strong>
+                                <small>Verbesserte Sichtbarkeit</small>
+                            </span>
+
+                            <input type="checkbox">
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="modal-close"
+            onclick="closeModal()">×</button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
