@@ -3110,3 +3110,37 @@ body {
 .app-footer .footer-project strong {
     color: #ffffff !important;
 }
+
+/* =========================================================
+   CHAT TYPING INDICATOR
+========================================================= */
+
+.typing-message {
+    opacity: .75;
+}
+
+
+.typing-dots {
+    display: inline-block;
+
+    margin-left: 4px;
+
+    animation: typingDots 1.2s infinite;
+}
+
+
+@keyframes typingDots {
+
+    0% {
+        opacity: .25;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .25;
+    }
+
+}

@@ -1521,50 +1521,256 @@ function saveReport() {
    CHAT
 ========================================================= */
 
+/* =========================================================
+   CHAT — INTERACTIVE REPLY
+========================================================= */
+
 function sendMessage() {
 
-    const input =
-        document.getElementById("messageInput");
+    const input = document.getElementById("messageInput");
 
     if (!input) return;
 
-    const text =
-        input.value.trim();
+    const text = input.value.trim();
 
     if (!text) return;
 
-    const messages =
-        document.getElementById("messages");
+    const messages = document.getElementById("messages");
 
     if (!messages) return;
 
-    const message =
-        document.createElement("div");
 
-    message.className =
-        "message sent";
+    /* =========================
+       PESAN PASIEN
+    ========================= */
+
+    const message = document.createElement("div");
+
+    message.className = "message sent";
 
     message.innerHTML = `
-
-        <p>
-            ${escapeHTML(text)}
-        </p>
-
-        <small>
-            ${t("now")}
-        </small>
+        <p>${escapeHTML(text)}</p>
+        <small>${t("now")}</small>
     `;
 
     messages.appendChild(message);
 
     input.value = "";
 
-    messages.scrollTop =
-        messages.scrollHeight;
+    messages.scrollTop = messages.scrollHeight;
 
     toast(t("messageSent"));
+
+
+    /* =========================
+       INDIKATOR MENGETIK
+    ========================= */
+
+    const typing = document.createElement("div");
+
+    typing.className = "message received typing-message";
+
+    typing.innerHTML = `
+        <p>
+            Pflegefachperson schreibt
+            <span class="typing-dots">...</span>
+        </p>
+    `;
+
+    messages.appendChild(typing);
+
+    messages.scrollTop = messages.scrollHeight;
+
+
+    /* =========================
+       BALASAN OTOMATIS
+    ========================= */
+
+    setTimeout(() => {
+
+        typing.remove();
+
+        const reply = getNurseReply(text);
+
+        const nurseMessage =
+            document.createElement("div");
+
+        nurseMessage.className = "message received";
+
+        nurseMessage.innerHTML = `
+            <p>${reply}</p>
+            <small>${getCurrentChatTime()}</small>
+        `;
+
+        messages.appendChild(nurseMessage);
+
+        messages.scrollTop = messages.scrollHeight;
+
+        toast("Pflegefachperson hat geantwortet.");
+
+    }, 1500);
 }
 
+
+/* =========================================================
+   NURSE RESPONSE
+========================================================= */
+
+function getNurseReply(text) {
+
+    const message = text.toLowerCase();
+
+
+    /* Blutdruck */
+
+    if (
+        message.includes("blutdruck") ||
+        message.includes("druck") ||
+        message.includes("138/82")
+    ) {
+
+        return `
+            Danke für die Rückmeldung.
+            Ein Blutdruck von 138/82 mmHg ist aktuell
+            unauffällig. Bitte messen Sie weiterhin regelmäßig
+            und informieren Sie uns, wenn sich Ihre Werte
+            deutlich verändern.
+        `;
+    }
+
+
+    /* Medikamente */
+
+    if (
+        message.includes("medikament") ||
+        message.includes("tablette") ||
+        message.includes("ramipril") ||
+        message.includes("metformin")
+    ) {
+
+        return `
+            Danke für die Information.
+            Bitte nehmen Sie Ihre Medikamente weiterhin
+            entsprechend dem vereinbarten Einnahmeplan ein.
+            Wenn Sie Nebenwirkungen bemerken, geben Sie uns
+            bitte Bescheid.
+        `;
+    }
+
+
+    /* Sturz */
+
+    if (
+        message.includes("sturz") ||
+        message.includes("gefallen") ||
+        message.includes("schwindel")
+    ) {
+
+        return `
+            Bitte bleiben Sie zunächst sitzen und stehen Sie
+            langsam auf. Wenn Ihnen weiterhin schwindelig ist
+            oder Sie gestürzt sind, informieren Sie uns bitte
+            sofort.
+        `;
+    }
+
+
+    /* Schmerz */
+
+    if (
+        message.includes("schmerz") ||
+        message.includes("weh") ||
+        message.includes("schmerzen")
+    ) {
+
+        return `
+            Das tut mir leid zu hören.
+            Bitte teilen Sie uns mit, wo die Schmerzen sind,
+            wie stark sie sind und seit wann sie bestehen.
+            Dann können wir die Situation besser einschätzen.
+        `;
+    }
+
+
+    /* Atembeschwerden */
+
+    if (
+        message.includes("atem") ||
+        message.includes("luft") ||
+        message.includes("atemnot") ||
+        message.includes("schwer atmen")
+    ) {
+
+        return `
+            Wenn Sie aktuell Atemnot haben, setzen Sie sich
+            bitte aufrecht hin und vermeiden Sie körperliche
+            Belastung. Bei starker oder zunehmender Atemnot
+            bitte sofort Hilfe holen.
+        `;
+    }
+
+
+    /* Allgemeines Wohlbefinden */
+
+    if (
+        message.includes("gut") ||
+        message.includes("okay") ||
+        message.includes("ok")
+    ) {
+
+        return `
+            Das freut mich zu hören.
+            Wenn sich Ihr Gesundheitszustand verändert oder
+            Sie Fragen haben, können Sie uns jederzeit
+            schreiben.
+        `;
+    }
+
+
+    /* Termin */
+
+    if (
+        message.includes("termin") ||
+        message.includes("besuch") ||
+        message.includes("wann")
+    ) {
+
+        return `
+            Ich schaue gerne nach Ihrem nächsten Termin.
+            Bitte bleiben Sie erreichbar, falls wir Sie
+            kurzfristig kontaktieren müssen.
+        `;
+    }
+
+
+    /* =========================
+       DEFAULT RESPONSE
+    ========================= */
+
+    return `
+        Vielen Dank für Ihre Nachricht.
+        Wir haben Ihre Information erhalten.
+        Wenn es um Beschwerden oder eine Veränderung
+        Ihres Gesundheitszustands geht, teilen Sie uns
+        bitte möglichst genau mit, was passiert ist.
+    `;
+}
+
+
+/* =========================================================
+   CHAT TIME
+========================================================= */
+
+function getCurrentChatTime() {
+
+    const now = new Date();
+
+    return now.toLocaleTimeString("de-DE", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+}
 
 /* =========================================================
    PROFILE
