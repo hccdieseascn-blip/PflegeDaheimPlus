@@ -25,7 +25,7 @@
         <div class="profile-mini">
             <div class="avatar">AM</div>
             <div>
-                <strong id="sidebarName">Anna Müller</strong>
+                <strong id="sidebarName">Zaenab Müller</strong>
                 <small>Pflegegrad 2</small>
             </div>
         </div>
@@ -104,7 +104,7 @@
                 <div class="top-profile">
                     <div class="avatar small">AM</div>
                     <div>
-                        <strong id="topName">Anna Müller</strong>
+                        <strong id="topName">Zaenab Müller</strong>
                         <small>Patientin</small>
                     </div>
                 </div>
@@ -127,7 +127,8 @@
 
                         <h2>
                         <span data-i18n="welcome">Willkommen zurück</span>,
-                        <span id="welcomeName">Anna</span> 👋
+                        <span id="welcomeName">Zaenab 
+                        </span> 👋
                         </h2>
 
                         <p data-i18n="welcomeDescription">
@@ -258,9 +259,9 @@
                                 <h3>Blutdruckverlauf</h3>
                             </div>
 
-                            <select>
-                                <option>7 Tage</option>
-                                <option>30 Tage</option>
+                            <select id="chartPeriod" onchange="updateChartPeriod(this)">
+                                <option value="7">7 Tage</option>
+                                <option value="30">30 Tage</option>
                             </select>
                         </div>
 
@@ -446,7 +447,7 @@
 
                             <div>
                                 <strong>Vitalzeichen kontrolliert</strong>
-                                <p>Pflegefachperson Weber · 08:25</p>
+                                <p>Pflegefachperson Revita · 08:25</p>
                             </div>
 
                         </div>
@@ -457,7 +458,7 @@
 
                             <div>
                                 <strong>Medikamenteneinnahme bestätigt</strong>
-                                <p>Anna Müller · 08:05</p>
+                                <p>Zaenab Müller · 08:05</p>
                             </div>
 
                         </div>
@@ -468,7 +469,7 @@
 
                             <div>
                                 <strong>Trinkmenge aktualisiert</strong>
-                                <p>Anna Müller · 07:45</p>
+                                <p>Zaenab Müller · 07:45</p>
                             </div>
 
                         </div>
@@ -549,9 +550,6 @@
                     </button>
 
                 </div>
-                    <input id="messageInput"
-                    data-i18n-placeholder="messagePlaceholder"
-                    placeholder="Nachricht schreiben...">
 
                 <div class="stats">
 
@@ -599,7 +597,7 @@
                     <div class="card-header">
                         <h3>Messverlauf</h3>
 
-                        <button class="secondary-btn">
+                        <button class="secondary-btn" onclick="exportVitals()">
                             Exportieren
                         </button>
                     </div>
@@ -691,8 +689,9 @@
                             🕐 08:00 Uhr
                         </div>
 
-                        <button class="secondary-btn"
-                            onclick="toast('Einnahme bereits bestätigt')">
+                        <button class="secondary-btn medication-confirmed"
+                            onclick="confirmMedication(this)"
+                            disabled>
                             ✓ Einnahme bestätigt
                         </button>
 
@@ -713,8 +712,9 @@
                             🕐 08:00 Uhr
                         </div>
 
-                        <button class="secondary-btn"
-                            onclick="toast('Einnahme bereits bestätigt')">
+                        <button class="secondary-btn medication-confirmed"
+                            onclick="confirmMedication(this)"
+                            disabled>
                             ✓ Einnahme bestätigt
                         </button>
 
@@ -736,7 +736,7 @@
                         </div>
 
                         <button class="primary-btn"
-                            onclick="toast('Einnahme für 20:00 Uhr vorgemerkt')">
+                            onclick="confirmMedication(this)">
                             Einnahme bestätigen
                         </button>
 
@@ -835,29 +835,29 @@
 
                     <div class="safety-list">
 
-                        <div>
+                        <div class="safety-item" data-room="Schlafzimmer">
                             <span>🛏️ Schlafzimmer</span>
-                            <b>✓ Sicher</b>
+                            <button class="safety-toggle" onclick="toggleSafety(this)">✓ Sicher</button>
                         </div>
 
-                        <div>
+                        <div class="safety-item" data-room="Badezimmer">
                             <span>🚿 Badezimmer</span>
-                            <b>✓ Sicher</b>
+                            <button class="safety-toggle" onclick="toggleSafety(this)">✓ Sicher</button>
                         </div>
 
-                        <div>
+                        <div class="safety-item" data-room="Küche">
                             <span>🍳 Küche</span>
-                            <b>✓ Sicher</b>
+                            <button class="safety-toggle" onclick="toggleSafety(this)">✓ Sicher</button>
                         </div>
 
-                        <div>
+                        <div class="safety-item" data-room="Wohnzimmer">
                             <span>🛋️ Wohnzimmer</span>
-                            <b>✓ Sicher</b>
+                            <button class="safety-toggle" onclick="toggleSafety(this)">✓ Sicher</button>
                         </div>
 
-                        <div>
+                        <div class="safety-item" data-room="Eingang">
                             <span>🚪 Eingang</span>
-                            <b class="orange-text">Überprüfen</b>
+                            <button class="safety-toggle orange-text" onclick="toggleSafety(this)">Überprüfen</button>
                         </div>
 
                     </div>
@@ -898,7 +898,7 @@
                             <p>Medikamenteneinnahme bestätigen</p>
                         </div>
 
-                        <button>✓ Erledigt</button>
+                        <button onclick="toast(t('taskCompleted'))">✓ Erledigt</button>
                     </div>
 
 
@@ -978,16 +978,16 @@
 
                     <div class="video-card">
 
-                        <div class="video-placeholder">
+                        <div class="video-placeholder" id="videoPlaceholder">
                             <div class="video-avatar">PW</div>
-                            <span>Pflegefachperson Weber</span>
+                            <span>Pflegefachperson Aghnia</span>
                             <small>Bereit für den Termin</small>
                         </div>
 
                         <div class="video-controls">
-                            <button>🎙️</button>
-                            <button>📷</button>
-                            <button class="end-call">☎</button>
+                            <button onclick="toggleVideoMic(this)" aria-label="Mikrofon">🎙️</button>
+                            <button onclick="toggleVideoCamera(this)" aria-label="Kamera">📷</button>
+                            <button class="end-call" onclick="endVideoCall()">☎</button>
                         </div>
 
                     </div>
@@ -1008,7 +1008,7 @@
                         <h3>Vorbereitung</h3>
 
                         <label class="check">
-                            <input type="checkbox" checked>
+                            <input type="checkbox" checked onchange="toggleNotifications(this)">
                             Vitalzeichen aktualisiert
                         </label>
 
@@ -1076,7 +1076,7 @@
                             </p>
 
                             <small>
-                                Pflegefachperson Weber
+                                Pflegefachperson Revita
                             </small>
                         </div>
 
@@ -1103,7 +1103,7 @@
                             </p>
 
                             <small>
-                                Pflegefachperson Weber
+                                Pflegefachperson Revita
                             </small>
                         </div>
 
@@ -1130,7 +1130,7 @@
                             </p>
 
                             <small>
-                                Pflegefachperson Weber
+                                Pflegefachperson Revita
                             </small>
                         </div>
 
@@ -1162,7 +1162,7 @@
                         <div class="avatar">PW</div>
 
                         <div>
-                            <strong>Pflegefachperson Weber</strong>
+                            <strong>Pflegefachperson Revita</strong>
                             <small>● Online</small>
                         </div>
                     </div>
@@ -1196,7 +1196,8 @@
                     <div class="chat-input">
 
                         <input id="messageInput"
-                            placeholder="Nachricht schreiben...">
+                    data-i18n-placeholder="messagePlaceholder"
+                    placeholder="Nachricht schreiben...">
 
                         <button onclick="sendMessage()">
                             ➤
@@ -1235,7 +1236,7 @@
                             <label>
                                 Name
                                 <input id="profileName"
-                                    value="Anna Müller">
+                                    value="Zaenab Müller">
                             </label>
 
                             <label>
@@ -1300,7 +1301,7 @@
                                 <small>Verbesserte Sichtbarkeit</small>
                             </span>
 
-                            <input type="checkbox">
+                            <input type="checkbox" onchange="toggleHighContrast(this)">
                         </label>
 
                     </div>
@@ -1311,6 +1312,85 @@
 
         </div>
 
+<footer class="app-footer">
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+            <div class="footer-logo">+</div>
+
+            <div>
+                <strong>PflegeDaheim+</strong>
+                <span>Digitale häusliche Pflege</span>
+            </div>
+        </div>
+
+        <div class="footer-project">
+            <small>GLOBAL HEALTH INNOVATION PROJECT</small>
+            <strong>Group 2</strong>
+        </div>
+
+    </div>
+
+
+    <div class="footer-line"></div>
+
+
+    <div class="footer-members">
+
+        <div class="member">
+            <b>01</b>
+            <span>Aghnia Nurul 'Afifah</span>
+        </div>
+
+        <div class="member">
+            <b>02</b>
+            <span>Revita Gultom</span>
+        </div>
+
+        <div class="member">
+            <b>03</b>
+            <span>Zaenab Shalsabil Az - Zahra</span>
+        </div>
+
+        <div class="member">
+            <b>04</b>
+            <span>Zhillan Insyirah</span>
+        </div>
+
+        <div class="member">
+            <b>05</b>
+            <span>Milca Alysseane Yohanes</span>
+        </div>
+
+    </div>
+
+
+    <div class="footer-line"></div>
+
+
+    <div class="footer-institution">
+
+        <strong>Program Studi Sarjana Terapan Keperawatan</strong>
+
+        <span>
+            Jurusan Keperawatan · Poltekkes Kemenkes Bandung
+        </span>
+
+        <span>Kelas 3STJ · 2026</span>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>© 2026 PflegeDaheim+</span>
+
+        <span>Digital Home Care & Nursing Innovation</span>
+
+    </div>
+
+</footer>
     </main>
 
 </div>

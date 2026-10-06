@@ -298,7 +298,7 @@ const translations = {
             "Videogespräch wird vorbereitet...",
 
         videoConnected:
-            "Pflegefachperson Weber ist verbunden.",
+            "Pflegefachperson Aghnia ist verbunden.",
 
         reportRequired:
             "Bitte einen Bericht eingeben.",
@@ -639,7 +639,7 @@ const translations = {
             "Video konsultasi sedang disiapkan...",
 
         videoConnected:
-            "Perawat Weber telah terhubung.",
+            "Perawat Aghnia telah terhubung.",
 
         reportRequired:
             "Harap masukkan catatan.",
@@ -1503,7 +1503,7 @@ function saveReport() {
             </p>
 
             <small>
-                Pflegefachperson Weber
+                Pflegefachperson Revita
             </small>
 
         </div>
@@ -1750,8 +1750,8 @@ function showNotifications() {
 
                 <p>
                     ${currentLanguage === "id"
-                        ? "Perawat Weber datang pukul 09:30."
-                        : "Pflegefachperson Weber kommt um 09:30 Uhr."
+                        ? "Perawat Revita datang pukul 09:30."
+                        : "Pflegefachperson Revita kommt um 09:30 Uhr."
                     }
                 </p>
 
@@ -1887,27 +1887,28 @@ function setLanguage(lang) {
    TRANSLATE STATIC HTML
 ========================================================= */
 
+/* =========================================================
+   TRANSLATE ALL PAGE CONTENT
+========================================================= */
+
 function translatePage() {
 
-    const dictionary =
-        translations[currentLanguage];
+    const dictionary = translations[currentLanguage];
 
     if (!dictionary) return;
 
-    /* Text */
+    /* ==========================================
+       1. TRANSLATE ELEMENTS WITH data-i18n
+    ========================================== */
 
     document
         .querySelectorAll("[data-i18n]")
         .forEach(element => {
 
             const key =
-                element.getAttribute(
-                    "data-i18n"
-                );
+                element.getAttribute("data-i18n");
 
-            if (
-                dictionary[key] !== undefined
-            ) {
+            if (dictionary[key] !== undefined) {
 
                 element.textContent =
                     dictionary[key];
@@ -1915,12 +1916,12 @@ function translatePage() {
         });
 
 
-    /* Placeholder */
+    /* ==========================================
+       2. TRANSLATE PLACEHOLDERS
+    ========================================== */
 
     document
-        .querySelectorAll(
-            "[data-i18n-placeholder]"
-        )
+        .querySelectorAll("[data-i18n-placeholder]")
         .forEach(element => {
 
             const key =
@@ -1928,16 +1929,167 @@ function translatePage() {
                     "data-i18n-placeholder"
                 );
 
-            if (
-                dictionary[key] !== undefined
-            ) {
+            if (dictionary[key] !== undefined) {
 
                 element.placeholder =
                     dictionary[key];
             }
         });
-}
 
+
+    /* ==========================================
+       3. TRANSLATE STATIC HTML TEXT
+       This fixes text that does NOT have
+       data-i18n in index.html.
+    ========================================== */
+
+    if (currentLanguage === "id") {
+
+        const germanToIndonesian = {};
+
+        Object.keys(translations.de)
+            .forEach(key => {
+
+                const german =
+                    translations.de[key];
+
+                const indonesian =
+                    translations.id[key];
+
+                if (
+                    typeof german === "string" &&
+                    typeof indonesian === "string" &&
+                    german.trim() !== ""
+                ) {
+
+                    germanToIndonesian[
+                        german.trim()
+                    ] = indonesian;
+                }
+
+            });
+
+
+        document
+            .querySelectorAll(
+                "body *:not(script):not(style)"
+            )
+            .forEach(element => {
+
+                element.childNodes.forEach(node => {
+
+                    if (
+                        node.nodeType !== Node.TEXT_NODE
+                    ) {
+                        return;
+                    }
+
+                    const original =
+                        node.nodeValue;
+
+                    const trimmed =
+                        original.trim();
+
+                    if (!trimmed) return;
+
+                    const translated =
+                        germanToIndonesian[
+                            trimmed
+                        ];
+
+                    if (
+                        translated !== undefined
+                    ) {
+
+                        node.nodeValue =
+                            original.replace(
+                                trimmed,
+                                translated
+                            );
+                    }
+
+                });
+
+            });
+
+    } else {
+
+        /*
+         * When returning to German,
+         * restore the original German
+         * dictionary values.
+         */
+
+        const indonesianToGerman = {};
+
+        Object.keys(translations.de)
+            .forEach(key => {
+
+                const german =
+                    translations.de[key];
+
+                const indonesian =
+                    translations.id[key];
+
+                if (
+                    typeof german === "string" &&
+                    typeof indonesian === "string" &&
+                    indonesian.trim() !== ""
+                ) {
+
+                    indonesianToGerman[
+                        indonesian.trim()
+                    ] = german;
+                }
+
+            });
+
+
+        document
+            .querySelectorAll(
+                "body *:not(script):not(style)"
+            )
+            .forEach(element => {
+
+                element.childNodes.forEach(node => {
+
+                    if (
+                        node.nodeType !== Node.TEXT_NODE
+                    ) {
+                        return;
+                    }
+
+                    const original =
+                        node.nodeValue;
+
+                    const trimmed =
+                        original.trim();
+
+                    if (!trimmed) return;
+
+                    const translated =
+                        indonesianToGerman[
+                            trimmed
+                        ];
+
+                    if (
+                        translated !== undefined
+                    ) {
+
+                        node.nodeValue =
+                            original.replace(
+                                trimmed,
+                                translated
+                            );
+                    }
+
+                });
+
+            });
+
+    }
+
+}
 
 /* =========================================================
    PAGE TITLE

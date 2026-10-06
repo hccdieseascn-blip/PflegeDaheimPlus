@@ -1472,3 +1472,1641 @@ body {
     color: var(--green);
     box-shadow: 0 1px 3px rgba(0,0,0,.08);
 }
+
+/* =========================
+   APP FOOTER
+========================= */
+
+.app-footer {
+    margin: 40px 0 20px;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #dce7e3;
+    color: #81908b;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.app-footer strong {
+    display: block;
+    color: #17765f;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.app-footer span {
+    display: block;
+}
+
+/* =========================================================
+   PFLEGE DAHEIM+ FOOTER
+========================================================= */
+
+.app-footer {
+    margin: 55px 0 0;
+    padding: 42px 45px 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4faf7 0%,
+            #ffffff 55%,
+            #f7fbfa 100%
+        );
+
+    border-top: 1px solid #d9e8e2;
+
+    color: #64756f;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* Decorative background */
+
+.app-footer::before {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background: rgba(23, 118, 95, 0.055);
+
+    top: -120px;
+    left: -80px;
+}
+
+
+.app-footer::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background: rgba(23, 118, 95, 0.04);
+
+    bottom: -100px;
+    right: -60px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.footer-brand {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 24px;
+}
+
+
+.footer-logo {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #17765f;
+
+    color: white;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 18px rgba(23, 118, 95, 0.18);
+}
+
+
+.footer-brand strong {
+
+    display: block;
+
+    margin: 0;
+
+    color: #173d34;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+}
+
+
+.footer-brand span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #82918c;
+
+    font-size: 10px;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.footer-divider {
+
+    width: 100%;
+
+    max-width: 720px;
+
+    height: 1px;
+
+    margin: 22px auto;
+
+    background: #dce9e4;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   PROJECT
+========================================================= */
+
+.footer-project {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-bottom: 24px;
+}
+
+
+.footer-label {
+
+    display: block;
+
+    color: #17765f;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+
+    margin-bottom: 6px;
+}
+
+
+.footer-project h3 {
+
+    margin: 0;
+
+    color: #173d34;
+
+    font-size: 22px;
+
+    font-weight: 700;
+}
+
+
+.footer-project p {
+
+    margin: 5px 0 0;
+
+    color: #82918c;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MEMBERS
+========================================================= */
+
+.footer-members {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(120px, 1fr));
+
+    gap: 10px;
+
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.footer-member {
+
+    min-height: 72px;
+
+    padding: 12px 9px;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid #e1ece8;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.footer-member:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #b9d8ce;
+
+    box-shadow:
+        0 8px 20px rgba(30, 80, 67, 0.08);
+}
+
+
+.footer-member span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #9aa9a4;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.footer-member strong {
+
+    display: block;
+
+    margin: 0;
+
+    color: #31554c;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INSTITUTION
+========================================================= */
+
+.footer-institution {
+
+    position: relative;
+
+    z-index: 2;
+
+    line-height: 1.7;
+
+    margin-bottom: 22px;
+}
+
+
+.footer-institution strong {
+
+    display: block;
+
+    color: #46645c;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.footer-institution span {
+
+    display: block;
+
+    color: #8a9994;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.footer-bottom {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #e2ebe8;
+
+    color: #9aa7a3;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .app-footer {
+
+        padding: 35px 25px 20px;
+
+    }
+
+    .footer-members {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .footer-members {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        gap: 5px;
+
+    }
+
+}
+
+/* =========================================================
+   PFLEGE DAHEIM+ — SEAMLESS FOOTER
+========================================================= */
+
+.app-footer {
+    position: relative !important;
+
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+
+    padding: 35px 40px 18px !important;
+
+    /* SAMAKAN DENGAN BACKGROUND HALAMAN */
+    background: #fffaf0 !important;
+
+    border-top: 1px solid #ebe5d5 !important;
+
+    text-align: center !important;
+
+    color: #64746e !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   DECORATION — SANGAT HALUS
+========================================================= */
+
+.app-footer::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    top: -95px;
+    left: -45px;
+
+    border-radius: 50%;
+
+    background: rgba(23, 118, 95, 0.035);
+
+    pointer-events: none;
+}
+
+
+.app-footer::after {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -55px;
+    bottom: -85px;
+
+    border-radius: 50%;
+
+    background: rgba(23, 118, 95, 0.03);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.app-footer .footer-brand {
+    position: relative;
+    z-index: 2;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 11px !important;
+
+    margin: 0 0 20px !important;
+}
+
+
+.app-footer .footer-logo {
+    width: 38px !important;
+    height: 38px !important;
+
+    min-width: 38px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 11px !important;
+
+    background: #17765f !important;
+
+    color: #fff !important;
+
+    font-size: 21px !important;
+    font-weight: 700 !important;
+
+    box-shadow: none !important;
+}
+
+
+.app-footer .footer-brand strong {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #173d34 !important;
+
+    font-size: 17px !important;
+
+    line-height: 1.2 !important;
+}
+
+
+.app-footer .footer-brand span {
+    display: block !important;
+
+    margin-top: 3px !important;
+
+    color: #87958f !important;
+
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.app-footer .footer-divider {
+    display: block !important;
+
+    width: 75% !important;
+
+    max-width: 780px !important;
+
+    height: 1px !important;
+
+    margin: 0 auto 20px !important;
+
+    padding: 0 !important;
+
+    background: #e7e2d5 !important;
+}
+
+
+/* =========================================================
+   PROJECT
+========================================================= */
+
+.app-footer .footer-project {
+    position: relative;
+    z-index: 2;
+
+    margin: 0 0 20px !important;
+}
+
+
+.app-footer .footer-label {
+    display: block !important;
+
+    margin-bottom: 5px !important;
+
+    color: #17765f !important;
+
+    font-size: 8px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 1.7px !important;
+}
+
+
+.app-footer .footer-project h3 {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #25483f !important;
+
+    font-size: 20px !important;
+
+    font-weight: 700 !important;
+}
+
+
+.app-footer .footer-project p {
+    display: block !important;
+
+    margin: 4px 0 0 !important;
+
+    color: #89958f !important;
+
+    font-size: 10px !important;
+}
+
+
+/* =========================================================
+   MEMBER CARDS
+========================================================= */
+
+.app-footer .footer-members {
+    position: relative;
+    z-index: 2;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(5, minmax(120px, 1fr)) !important;
+
+    gap: 10px !important;
+
+    width: 100% !important;
+
+    max-width: 950px !important;
+
+    margin: 0 auto !important;
+
+    padding: 0 !important;
+}
+
+
+.app-footer .footer-member {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-height: 75px !important;
+
+    padding: 10px 8px !important;
+
+    box-sizing: border-box !important;
+
+    background: rgba(255,255,255,.58) !important;
+
+    border: 1px solid #e7e4d9 !important;
+
+    border-radius: 10px !important;
+
+    box-shadow: none !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.app-footer .footer-member:hover {
+    transform: translateY(-2px) !important;
+
+    background: #ffffff !important;
+
+    border-color: #c9ddd5 !important;
+}
+
+
+/* NUMBER */
+
+.app-footer .footer-member span {
+    display: block !important;
+
+    margin: 0 0 5px !important;
+
+    color: #9aa49f !important;
+
+    font-size: 8px !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* NAME */
+
+.app-footer .footer-member strong {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    color: #41645a !important;
+
+    font-size: 10px !important;
+
+    line-height: 1.35 !important;
+
+    font-weight: 600 !important;
+
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   INSTITUTION
+========================================================= */
+
+.app-footer .footer-institution {
+    position: relative;
+    z-index: 2;
+
+    margin: 20px 0 15px !important;
+
+    padding-top: 18px !important;
+
+    border-top: 1px solid #e7e2d5 !important;
+
+    line-height: 1.6 !important;
+}
+
+
+.app-footer .footer-institution strong {
+    display: block !important;
+
+    margin: 0 0 2px !important;
+
+    color: #536d64 !important;
+
+    font-size: 10px !important;
+
+    font-weight: 700 !important;
+}
+
+
+.app-footer .footer-institution span {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #929b97 !important;
+
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.app-footer .footer-bottom {
+    position: relative;
+    z-index: 2;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    width: 100% !important;
+
+    max-width: 950px !important;
+
+    margin: 0 auto !important;
+
+    padding-top: 12px !important;
+
+    border-top: 1px solid #ebe6da !important;
+
+    color: #a0a8a4 !important;
+
+    font-size: 8px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .app-footer .footer-members {
+        grid-template-columns:
+            repeat(3, 1fr) !important;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .app-footer {
+        padding: 30px 18px 18px !important;
+    }
+
+    .app-footer .footer-members {
+        grid-template-columns:
+            repeat(2, 1fr) !important;
+    }
+
+    .app-footer .footer-bottom {
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .app-footer .footer-members {
+        grid-template-columns: 1fr !important;
+    }
+
+}
+
+/* =========================================================
+   PFLEGE DAHEIM+ — CLEAN FOOTER
+========================================================= */
+
+.app-footer {
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+    padding: 28px 35px 18px !important;
+
+    /* SAMA DENGAN AREA DASHBOARD */
+    background: transparent !important;
+
+    border-top: 1px solid #e8e3d7 !important;
+
+    color: #71817b !important;
+
+    position: relative !important;
+}
+
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.footer-top {
+    width: 100% !important;
+    max-width: 1000px !important;
+
+    margin: 0 auto 20px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    gap: 30px !important;
+}
+
+
+/* BRAND */
+
+.app-footer .footer-brand {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 10px !important;
+
+    margin: 0 !important;
+}
+
+
+.app-footer .footer-logo {
+    width: 34px !important;
+    height: 34px !important;
+
+    min-width: 34px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 10px !important;
+
+    background: #17765f !important;
+
+    color: white !important;
+
+    font-size: 19px !important;
+
+    font-weight: 700 !important;
+}
+
+
+.app-footer .footer-brand strong {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #173d34 !important;
+
+    font-size: 15px !important;
+
+    line-height: 1.2 !important;
+}
+
+
+.app-footer .footer-brand span {
+    display: block !important;
+
+    margin-top: 2px !important;
+
+    color: #899691 !important;
+
+    font-size: 8px !important;
+}
+
+
+/* =========================================================
+   PROJECT
+========================================================= */
+
+.footer-project {
+    text-align: right !important;
+}
+
+
+.footer-project span {
+    display: block !important;
+
+    color: #17765f !important;
+
+    font-size: 7px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 1.4px !important;
+
+    margin-bottom: 3px !important;
+}
+
+
+.footer-project strong {
+    display: block !important;
+
+    color: #38584f !important;
+
+    font-size: 13px !important;
+}
+
+
+/* =========================================================
+   MEMBERS
+========================================================= */
+
+.footer-members {
+    width: 100% !important;
+
+    max-width: 1000px !important;
+
+    margin: 0 auto !important;
+
+    padding: 14px 0 !important;
+
+    border-top: 1px solid #eee9de !important;
+
+    border-bottom: 1px solid #eee9de !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    flex-wrap: wrap !important;
+
+    gap: 7px !important;
+}
+
+
+.footer-members span {
+    display: inline !important;
+
+    color: #61746c !important;
+
+    font-size: 9px !important;
+
+    font-weight: 500 !important;
+}
+
+
+.footer-members i {
+    display: inline !important;
+
+    color: #b0bab5 !important;
+
+    font-style: normal !important;
+
+    font-size: 8px !important;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.app-footer .footer-bottom {
+    width: 100% !important;
+
+    max-width: 1000px !important;
+
+    margin: 0 auto !important;
+
+    padding-top: 12px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    gap: 20px !important;
+
+    color: #9aa49f !important;
+
+    font-size: 8px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .footer-top {
+        flex-direction: column !important;
+
+        align-items: center !important;
+
+        text-align: center !important;
+    }
+
+    .footer-project {
+        text-align: center !important;
+    }
+
+    .app-footer .footer-bottom {
+        flex-direction: column !important;
+
+        text-align: center !important;
+
+        gap: 5px !important;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .footer-members {
+        gap: 5px !important;
+    }
+
+    .footer-members i {
+        display: none !important;
+    }
+
+    .footer-members span {
+        padding: 3px 7px !important;
+    }
+
+}
+
+/* =========================================================
+   FINAL SIDEBAR ALIGNMENT FIX
+========================================================= */
+
+/* Sidebar selalu penuh dari atas sampai bawah */
+.sidebar {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width: 320px !important;
+    min-width: 320px !important;
+
+    height: 100vh !important;
+
+    box-sizing: border-box !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    z-index: 100 !important;
+
+    background: #fffef2 !important;
+
+    border-right: 1px solid #e8e5d5 !important;
+}
+
+
+/* Main mengikuti posisi sidebar */
+.main {
+    margin-left: 320px !important;
+
+    width: calc(100% - 320px) !important;
+
+    min-width: 0 !important;
+    min-height: 100vh !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Jangan biarkan content membuat layout melebar */
+.content {
+    width: 100% !important;
+    max-width: none !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Topbar tetap mengikuti area main */
+.topbar {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+
+/* Footer mengikuti area main */
+.app-footer {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        display: none !important;
+    }
+
+    .main {
+        margin-left: 0 !important;
+
+        width: 100% !important;
+    }
+
+}
+
+/* =========================================================
+   PFLEGE DAHEIM+ — ELEGANT FOOTER
+========================================================= */
+
+.app-footer {
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+    padding: 42px 45px 20px !important;
+
+    background: #fffaf0 !important;
+
+    border-top: 1px solid #e8e2d4 !important;
+
+    color: #60736c !important;
+}
+
+
+/* =========================================================
+   FOOTER MAIN
+========================================================= */
+
+.footer-main {
+    width: 100% !important;
+    max-width: 1000px !important;
+
+    margin: 0 auto !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 30px !important;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.app-footer .footer-brand {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 12px !important;
+
+    margin: 0 !important;
+}
+
+
+.app-footer .footer-logo {
+    width: 42px !important;
+    height: 42px !important;
+
+    min-width: 42px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 12px !important;
+
+    background: #17765f !important;
+
+    color: #ffffff !important;
+
+    font-size: 23px !important;
+    font-weight: 700 !important;
+}
+
+
+.app-footer .footer-brand strong {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #173d34 !important;
+
+    font-size: 17px !important;
+
+    line-height: 1.2 !important;
+}
+
+
+.app-footer .footer-brand span {
+    display: block !important;
+
+    margin-top: 4px !important;
+
+    color: #899690 !important;
+
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   PROJECT
+========================================================= */
+
+.footer-project {
+    text-align: right !important;
+}
+
+
+.footer-project small {
+    display: block !important;
+
+    margin-bottom: 5px !important;
+
+    color: #17765f !important;
+
+    font-size: 8px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 1.8px !important;
+}
+
+
+.footer-project strong {
+    display: block !important;
+
+    color: #294b42 !important;
+
+    font-size: 18px !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   LINE
+========================================================= */
+
+.footer-line {
+    width: 100% !important;
+    max-width: 1000px !important;
+
+    height: 1px !important;
+
+    margin: 27px auto !important;
+
+    background: #e7e1d5 !important;
+}
+
+
+/* =========================================================
+   MEMBERS
+========================================================= */
+
+.footer-members {
+    width: 100% !important;
+    max-width: 1000px !important;
+
+    margin: 0 auto !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(5, 1fr) !important;
+
+    gap: 10px !important;
+}
+
+
+.footer-members .member {
+    min-height: 70px !important;
+
+    padding: 12px 10px !important;
+
+    box-sizing: border-box !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    background: rgba(255,255,255,.48) !important;
+
+    border: 1px solid #e6e2d8 !important;
+
+    border-radius: 12px !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.footer-members .member:hover {
+    background: #ffffff !important;
+
+    border-color: #c9ddd5 !important;
+
+    transform: translateY(-2px) !important;
+}
+
+
+.footer-members .member b {
+    margin-bottom: 7px !important;
+
+    color: #a0aaa5 !important;
+
+    font-size: 8px !important;
+
+    font-weight: 600 !important;
+}
+
+
+.footer-members .member span {
+    color: #46645b !important;
+
+    font-size: 10px !important;
+
+    line-height: 1.35 !important;
+
+    font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   INSTITUTION
+========================================================= */
+
+.footer-institution {
+    text-align: center !important;
+
+    line-height: 1.6 !important;
+}
+
+
+.footer-institution strong {
+    display: block !important;
+
+    margin-bottom: 3px !important;
+
+    color: #48675e !important;
+
+    font-size: 10px !important;
+
+    font-weight: 700 !important;
+}
+
+
+.footer-institution span {
+    display: block !important;
+
+    color: #929c97 !important;
+
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.footer-bottom {
+    width: 100% !important;
+    max-width: 1000px !important;
+
+    margin: 22px auto 0 !important;
+
+    padding-top: 13px !important;
+
+    border-top: 1px solid #ece7dc !important;
+
+    display: flex !important;
+
+    justify-content: space-between !important;
+
+    color: #a1aaa6 !important;
+
+    font-size: 8px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .footer-members {
+        grid-template-columns:
+            repeat(3, 1fr) !important;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .app-footer {
+        padding: 35px 20px 18px !important;
+    }
+
+    .footer-main {
+        flex-direction: column !important;
+
+        text-align: center !important;
+    }
+
+    .footer-project {
+        text-align: center !important;
+    }
+
+    .footer-members {
+        grid-template-columns:
+            repeat(2, 1fr) !important;
+    }
+
+    .footer-bottom {
+        flex-direction: column !important;
+
+        align-items: center !important;
+
+        gap: 5px !important;
+
+        text-align: center !important;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .footer-members {
+        grid-template-columns: 1fr !important;
+    }
+
+}
+
+/* =========================================================
+   FOOTER GREEN — FINAL POLISH
+========================================================= */
+
+.app-footer {
+    background: #17765f !important;
+
+    padding: 32px 42px 17px !important;
+}
+
+
+/* Kurangi garis yang terlalu banyak */
+.app-footer .footer-line {
+    background: rgba(255,255,255,.16) !important;
+
+    margin: 20px auto !important;
+}
+
+
+/* Member cards lebih clean */
+.app-footer .footer-members .member {
+    min-height: 68px !important;
+
+    background: rgba(255,255,255,.08) !important;
+
+    border: 1px solid rgba(255,255,255,.18) !important;
+
+    border-radius: 11px !important;
+}
+
+
+.app-footer .footer-members .member:hover {
+    background: rgba(255,255,255,.15) !important;
+
+    transform: translateY(-2px) !important;
+}
+
+
+/* Nama lebih terbaca */
+.app-footer .footer-members .member span {
+    color: #ffffff !important;
+
+    font-size: 10px !important;
+
+    line-height: 1.4 !important;
+}
+
+
+/* Nomor sedikit lebih soft */
+.app-footer .footer-members .member b {
+    color: #bde0d5 !important;
+}
+
+
+/* Institusi */
+.app-footer .footer-institution {
+    margin-top: 2px !important;
+}
+
+
+.app-footer .footer-institution strong {
+    color: #ffffff !important;
+}
+
+
+.app-footer .footer-institution span {
+    color: rgba(255,255,255,.72) !important;
+}
+
+
+/* Copyright */
+.app-footer .footer-bottom {
+    margin-top: 18px !important;
+
+    color: rgba(255,255,255,.62) !important;
+
+    border-top: 1px solid rgba(255,255,255,.16) !important;
+}
+
+
+/* Brand */
+.app-footer .footer-brand strong {
+    color: #ffffff !important;
+}
+
+
+.app-footer .footer-brand span {
+    color: rgba(255,255,255,.72) !important;
+}
+
+
+/* Project */
+.app-footer .footer-project small {
+    color: #c5e6dc !important;
+}
+
+
+.app-footer .footer-project strong {
+    color: #ffffff !important;
+}
